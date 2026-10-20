@@ -48,6 +48,12 @@ class Scanner{
 
         if (SYMBOLS.has(char)) {
             console.log("Símbolo encontrado:", char);
+            this.tokens.push({
+        type: "symbol",
+        value: char,
+        line: this.line,
+        column: this.column - 1
+    })
         }
     }
 

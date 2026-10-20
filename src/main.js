@@ -2,10 +2,14 @@ const Scanner = require("./lexer/Scanner");
 
 const scanner = new Scanner("Jack");
 
-console.log(scanner.peek());
-console.log(scanner.advance());
-console.log(scanner.peek());
+console.log(scanner.isAtEnd());
+
+scanner.advance();
+scanner.advance();
+scanner.advance();
+scanner.advance();
 
 console.log("Posição:", scanner.position);
-console.log("Linha:", scanner.line);
-console.log("Coluna:", scanner.column);
+console.log("Tamanho:", scanner.source.length);
+
+console.log("Terminou?", scanner.isAtEnd());

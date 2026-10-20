@@ -25,6 +25,11 @@ class Scanner{
         }
         return char
     }
+    isAtEnd(){
+
+        return this.position >= this.source.length
+
+    }
 }
 
 

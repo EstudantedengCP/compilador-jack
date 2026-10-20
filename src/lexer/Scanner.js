@@ -44,6 +44,10 @@ class Scanner{
 
         let char = this.advance();
 
+        if(this.isDigit(char)){
+            this.readNumber()
+        }
+
         console.log("Caractere:", char);
 
         if (SYMBOLS.has(char)) {
@@ -58,6 +62,22 @@ class Scanner{
     }
 
     return this.tokens;
+}
+isDigit(char) {
+    return /[0-9]/.test(char);
+}
+readNumber() {
+    while (!this.isAtEnd() && this.isDigit(this.peek())) {
+        this.advance();
+    }
+    const number = this.source.slice(this.start, this.position);
+
+   this.tokens.push({
+    type: "integerConstant",
+    value: number,
+    line: this.line,
+    column: this.column - number.length
+});;
 }
 }
 

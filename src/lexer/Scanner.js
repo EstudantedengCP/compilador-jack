@@ -1,3 +1,11 @@
+const SYMBOLS = new Set([
+    "{", "}", "(", ")", "[", "]",
+    ".", ",", ";", "+", "-", "*", "/",
+    "&", "|", "<", ">", "=", "~"
+]);
+
+
+
 class Scanner{
     constructor(source){
         this.source = source;
@@ -30,14 +38,21 @@ class Scanner{
         return this.position >= this.source.length
 
     }
-    tokenize(){
-        while(!this.isAtEnd()){
-            this.start = this.position
-            let char = this.advance()
-            console.log("Caractere:", char)
+   tokenize() {
+    while (!this.isAtEnd()) {
+        this.start = this.position;
+
+        let char = this.advance();
+
+        console.log("Caractere:", char);
+
+        if (SYMBOLS.has(char)) {
+            console.log("Símbolo encontrado:", char);
         }
-        return this.tokens;
     }
+
+    return this.tokens;
+}
 }
 
 

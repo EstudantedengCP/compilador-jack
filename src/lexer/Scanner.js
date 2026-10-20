@@ -30,6 +30,14 @@ class Scanner{
         return this.position >= this.source.length
 
     }
+    tokenize(){
+        while(!this.isAtEnd()){
+            this.start = this.position
+            let char = this.advance()
+            console.log("Caractere:", char)
+        }
+        return this.tokens;
+    }
 }
 
 

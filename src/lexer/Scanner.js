@@ -32,6 +32,8 @@ class Scanner{
         let char  = this.source[this.position]
         this.position++
 
+
+
         if(char === "\n"){
             this.line++
             this.column = 1
@@ -51,6 +53,17 @@ class Scanner{
         this.start = this.position;
 
         let char = this.advance();
+
+        if (char === "/" && this.peek() === "/") {
+            this.advance();
+            this.skipLineComment();
+            continue;
+        }
+        if(char === "/" && this.peek() === "*"){
+            this.advance();
+            this.skipBlockComment();
+            continue;
+        }
 
         if(this.isDigit(char)){
             this.readNumber()
@@ -133,6 +146,26 @@ readString() {
     column: this.column - value.length - 2
 });
 }
+
+skipLineComment() {
+    while (!this.isAtEnd() && this.peek() !== "\n") {
+        this.advance();
+    }
+}
+
+skipBlockComment(){
+    while(!this.isAtEnd()){
+        if(this.peek()=== "*" && this.source[this.position + 1]=== "/"){
+            this.advance();
+            this.advance();
+            return
+        }
+        this.advance()
+    }
+    throw new Error("Comentário de bloco não fechado")
+}
+
+
 }
 
 

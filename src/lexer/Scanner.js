@@ -108,6 +108,11 @@ readNumber() {
         this.advance();
     }
     const number = this.source.slice(this.start, this.position);
+    if(Number(number)> 32767){
+        throw new Error(
+            `Número inteiro fora do limite: ${number} na linha ${this.line}`
+        );
+    }
 
    this.tokens.push({
     type: "integerConstant",

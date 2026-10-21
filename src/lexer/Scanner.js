@@ -67,26 +67,34 @@ class Scanner{
 
         if(this.isDigit(char)){
             this.readNumber()
+            continue
         }
 
-        console.log("Caractere:", char);
 
         if (SYMBOLS.has(char)) {
-            console.log("Símbolo encontrado:", char);
             this.tokens.push({
         type: "symbol",
         value: char,
         line: this.line,
         column: this.column - 1
     })
+    continue
         }
         if (this.isLetter(char)) {
         this.readIdentifier();
+        continue
 
 }
         if (char === '"') {
     this.readString();
+    continue
 }
+
+       if(!/\s/.test(char)){
+        throw new Error(
+            `Caractere inválido: ${char} na linha ${this.line}, coluna ${this.column - 1}`
+        );
+       }
       
     }
 

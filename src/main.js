@@ -1,5 +1,5 @@
 const Scanner = require("./lexer/Scanner");
 
-const scanner = new Scanner("/* Meu comentario */\nlet x = 10;");
+const scanner = new Scanner('let nome = "Lucas";');
 
 console.log(scanner.tokenize());
